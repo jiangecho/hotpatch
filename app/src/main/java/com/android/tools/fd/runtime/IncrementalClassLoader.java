@@ -26,7 +26,6 @@ import java.util.List;
 
 import dalvik.system.BaseDexClassLoader;
 
-import static com.android.tools.fd.runtime.BootstrapApplication.LOG_TAG;
 
 // This is based on com.google.devtools.build.android.incrementaldeployment.IncrementalClassLoader
 // with some cleanup around path handling and made it compile on JDK 6 (e.g. removed multicatch
@@ -47,6 +46,8 @@ public class IncrementalClassLoader extends ClassLoader {
     public static final boolean DEBUG_CLASS_LOADING = false;
 
     private final DelegateClassLoader delegateClassLoader;
+
+    private static final String LOG_TAG = "instant-run";
 
     public IncrementalClassLoader(
             ClassLoader original, String nativeLibraryPath, String codeCacheDir, List<String> dexes) {
@@ -129,11 +130,6 @@ public class IncrementalClassLoader extends ClassLoader {
             pathBuilder.append(dex);
         }
 
-        //if (Log.isLoggable(LOG_TAG, Log.VERBOSE)) {
-            Log.v(LOG_TAG, "Incremental dex path is "
-                    + BootstrapApplication.join('\n', dexes));
-        //}
-        Log.e("jyj", pathBuilder.toString());
         return pathBuilder.toString();
     }
 
