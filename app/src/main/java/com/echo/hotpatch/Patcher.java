@@ -6,6 +6,7 @@ import com.android.tools.fd.runtime.PatchesLoader;
  * Created by jiangecho on 2016/9/23.
  */
 
+// patch in a seperate thread
 public class Patcher {
     public static void patch() {
         try {
